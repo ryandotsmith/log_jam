@@ -57,5 +57,11 @@ class LogJamTest < MiniTest::Unit::TestCase
     assert_equal({:account => [log_msg]}, LogJam.drain)
   end
 
+  def test_drain_with_non_int_log_message_key
+    log_msg = "test_name=account_creation run=1234"
+    LogJam.priorities(:test_name, :run)
+    LogJam.puts(log_msg)
+    assert_equal({:test_name=> [log_msg]}, LogJam.drain)
+  end
 
 end
