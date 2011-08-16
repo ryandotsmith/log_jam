@@ -4,7 +4,7 @@ A proxy that persists log messages to a database.
 
 ## Requirements
 
-log_jam also will call ActiveRecord like classes. `AccountLog.create({})`
+log_jam will call an ActiveRecord like class. `AccountLog.create({})`
 
 ## Install
 
