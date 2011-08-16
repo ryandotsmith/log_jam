@@ -3,13 +3,20 @@ module LogJam
 
   @@logs = []
 
+  def setup_logger(logger, level)
+    @@default_logger = logger
+    @@default_level = level
+  end
+
   def priorities(*list)
     @@priorities = list
   end
 
   def puts(msg)
     @@logs << msg
-    Rails.logger.info(msg)
+    if defined? @@default_logger
+      @@default_logger.send(@@default_level, msg)
+    end
   end
 
   def write_to_disk

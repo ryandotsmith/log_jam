@@ -4,12 +4,15 @@ A proxy that persists log messages to a database.
 
 ## Requirements
 
-LogJam will send `Rails.logger.info` log messages.
-LogJam also will call ActiveRecord like classes. `AccountLog.create({})`
+LogJam will call an ActiveRecord like class. `AccountLog.create({})`
 
 ## Usage
 
 ```ruby
+  # log_jam will pass along log messages in real time. log_jam will not wait for
+  # you to call drain before it sends messages to the default logger.
+  LogJam.setup_logger(Rails.logger, :info)
+
   # the order of our priorities determines which table the log will be stored in.
   LogJam.priorities(:invoice, :account)
 

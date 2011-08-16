@@ -21,6 +21,14 @@ class InvoiceLog < Log; end
 
 class LogJamTest < MiniTest::Unit::TestCase
 
+  def test_setup_default_logger
+    log_msg = "invoice=123 account=123"
+    LogJam.setup_logger(Rails.logger, :info)
+    LogJam.priorities(:invoice, :account)
+    LogJam.puts(log_msg)
+    LogJam.drain
+  end
+
   def test_write_to_disk
     log_msg = "invoice=123 account=123"
     LogJam.priorities(:invoice, :account)

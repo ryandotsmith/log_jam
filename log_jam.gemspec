@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name          = 'log_jam'
   s.email         = 'ryan@heroku.com'
-  s.version       = '0.0.1'
+  s.version       = '0.0.2'
   s.date          = '2011-08-15'
   s.description   = "LogJam is a proxy to another logger. Say, the Rails logger. This gem intercepts the log message and writes them to a database every now and then."
   s.summary       = "logging utility"
