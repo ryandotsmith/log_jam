@@ -24,9 +24,15 @@ $ gem install log_jam
 
   # log_jam will also pass this message to Rails.logger.info
   LogJam.puts("account=123 invoice=456  invoice created")
+  
+  # Optional
+  # If you don't care about writing to disk, you can call drain to get a hash of 
+  # your prioritized log messages. BUT it will definitely drain, so do this only if 
+  # you are not wanting to call write_to_disk.
+  LogJam.drain #=> {:invoice => ["account=123 invoice=456  invoice created"]} 
 
   # This message drains the logs and figures out how to write to the database.
-  # Since we defined our first priority as :invoice, LogJam will ask the kernel
+  # Since we defined our first priority as :invoice, log_jam will ask the Kernel class
   # for the InvoiceLog class. It will then send the create message to the class
   # with parameters that look like this: {:invoice_id => 456, :message => "account=123 invoice=456  invoice created"}
   LogJam.write_to_disk
