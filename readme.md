@@ -1,10 +1,10 @@
 # log_jam
 
-A proxy that persists log messages to a database.
-
 ## Requirements
 
-log_jam will call an ActiveRecord like class. `AccountLog.create({})`
+log_jam will call an ActiveRecord like class. `AccountLog.create(:account_id => int, :message => text)`
+
+This class must represent a table that has 2 columns: *foreign_key account_id, text message*.
 
 ## Install
 
@@ -15,6 +15,8 @@ $ gem install log_jam
 ## Usage
 
 ```ruby
+  require 'log_jam'
+  
   # log_jam will pass along log messages in real time. log_jam will not wait for
   # you to call drain before it sends messages to the default logger.
   LogJam.setup_logger(Rails.logger, :info)
