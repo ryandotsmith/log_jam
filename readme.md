@@ -32,9 +32,11 @@ better way to query your data set than SQL.
 
 ### API
 
+**Also, checkout example.rb**
+
 ```ruby
   require 'log_jam'
-  
+
   # log_jam will pass along log messages in real time. log_jam will not wait for
   # you to call drain before it sends messages to the default logger.
   LogJam.setup_logger(Rails.logger, :info)
